@@ -1,0 +1,293 @@
+> show dbs
+DB1     0.000GB
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> use DB1
+switched to db DB1
+> show collections
+student
+> db.dropDatabase()
+{ "ok" : 1 }
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> 
+> use acme
+switched to db acme
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> db
+acme
+> db.createCollection('Employee')
+{ "ok" : 1 }
+> show collections
+Employee
+>
+> db.Employee.insert({
+... eid: 'A1',
+... name: 'Khushi',
+... profile: 'Trainee',
+... city: 'Bhavnagar'
+... })
+WriteResult({ "nInserted" : 1 })
+> db.Employee.insertMany([
+... {
+... eid: 'B2',
+... name: 'Pooja',
+... profile: 'HR',
+... city: 'Ahmedabad'
+... },
+... {
+... eid: 'C3',
+... name: 'Drashti',
+... profile: 'Software Engineer',
+... city: 'Bhavnagar'
+... },
+... {
+... eid: 'D4',
+... name: 'Gita',
+... profile: 'Business Analyst',
+... city: 'Vadodara'
+... }
+... ])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("61e6bf5af02a1a00250b3826"),
+                ObjectId("61e6bf5af02a1a00250b3827"),
+                ObjectId("61e6bf5af02a1a00250b3828")
+        ]
+}
+>
+> db.Employee.find()
+{ "_id" : ObjectId("61e6be79f02a1a00250b3825"), "eid" : "A1", "name" : "Khushi", "profile" : "Trainee", "city" : "Bhavnagar" }
+{ "_id" : ObjectId("61e6bf5af02a1a00250b3826"), "eid" : "B2", "name" : "Pooja", "profile" : "HR", "city" : "Ahmedabad" }
+{ "_id" : ObjectId("61e6bf5af02a1a00250b3827"), "eid" : "C3", "name" : "Drashti", "profile" : "Software Engineer", "city" : "Bhavnagar" }
+{ "_id" : ObjectId("61e6bf5af02a1a00250b3828"), "eid" : "D4", "name" : "Gita", "profile" : "Business Analyst", "city" : "Vadodara" }
+> db.Employee.find().pretty()
+{
+        "_id" : ObjectId("61e6be79f02a1a00250b3825"),
+        "eid" : "A1",
+        "name" : "Khushi",
+        "profile" : "Trainee",
+        "city" : "Bhavnagar"
+}
+{
+        "_id" : ObjectId("61e6bf5af02a1a00250b3826"),
+        "eid" : "B2",
+        "name" : "Pooja",
+        "profile" : "HR",
+        "city" : "Ahmedabad"
+}
+{
+        "_id" : ObjectId("61e6bf5af02a1a00250b3827"),
+        "eid" : "C3",
+        "name" : "Drashti",
+        "profile" : "Software Engineer",
+        "city" : "Bhavnagar"
+}
+{
+        "_id" : ObjectId("61e6bf5af02a1a00250b3828"),
+        "eid" : "D4",
+        "name" : "Gita",
+        "profile" : "Business Analyst",
+        "city" : "Vadodara"
+}
+>
+>  db.Employee.find({city: 'Bhavnagar'})
+{ "_id" : ObjectId("61e6be79f02a1a00250b3825"), "eid" : "A1", "name" : "Khushi", "profile" : "Trainee", "city" : "Bhavnagar" }
+{ "_id" : ObjectId("61e6bf5af02a1a00250b3827"), "eid" : "C3", "name" : "Drashti", "profile" : "Software Engineer", "city" : "Bhavnagar" }
+>
+>  db.Employee.find({city: 'Bhavnagar'})
+{ "_id" : ObjectId("61e6be79f02a1a00250b3825"), "eid" : "A1", "name" : "Khushi", "profile" : "Trainee", "city" : "Bhavnagar" }
+{ "_id" : ObjectId("61e6bf5af02a1a00250b3827"), "eid" : "C3", "name" : "Drashti", "profile" : "Software Engineer", "city" : "Bhavnagar" }
+> db.Employee.find({city: 'Bhavnagar'}).pretty()
+{
+        "_id" : ObjectId("61e6be79f02a1a00250b3825"),
+        "eid" : "A1",
+        "name" : "Khushi",
+        "profile" : "Trainee",
+        "city" : "Bhavnagar"
+}
+{
+        "_id" : ObjectId("61e6bf5af02a1a00250b3827"),
+        "eid" : "C3",
+        "name" : "Drashti",
+        "profile" : "Software Engineer",
+        "city" : "Bhavnagar"
+}
+> db.Employee.find().sort({name:1}).pretty()
+{
+        "_id" : ObjectId("61e6bf5af02a1a00250b3827"),
+        "eid" : "C3",
+        "name" : "Drashti",
+        "profile" : "Software Engineer",
+        "city" : "Bhavnagar"
+}
+{
+        "_id" : ObjectId("61e6bf5af02a1a00250b3828"),
+        "eid" : "D4",
+        "name" : "Gita",
+        "profile" : "Business Analyst",
+        "city" : "Vadodara"
+}
+{
+        "_id" : ObjectId("61e6be79f02a1a00250b3825"),
+        "eid" : "A1",
+        "name" : "Khushi",
+        "profile" : "Trainee",
+        "city" : "Bhavnagar"
+}
+{
+        "_id" : ObjectId("61e6bf5af02a1a00250b3826"),
+        "eid" : "B2",
+        "name" : "Pooja",
+        "profile" : "HR",
+        "city" : "Ahmedabad"
+}
+>
+> db.Employee.find({city:'Bhavnagar'}).count()
+2
+> db.Employee.find().limit(2).pretty()
+{
+        "_id" : ObjectId("61e6be79f02a1a00250b3825"),
+        "eid" : "A1",
+        "name" : "Khushi",
+        "profile" : "Trainee",
+        "city" : "Bhavnagar"
+}
+{
+        "_id" : ObjectId("61e6bf5af02a1a00250b3826"),
+        "eid" : "B2",
+        "name" : "Pooja",
+        "profile" : "HR",
+        "city" : "Ahmedabad"
+}
+> db.Employee.find().sort({city:1}).limit(2).pretty()
+{
+        "_id" : ObjectId("61e6bf5af02a1a00250b3826"),
+        "eid" : "B2",
+        "name" : "Pooja",
+        "profile" : "HR",
+        "city" : "Ahmedabad"
+}
+{
+        "_id" : ObjectId("61e6be79f02a1a00250b3825"),
+        "eid" : "A1",
+        "name" : "Khushi",
+        "profile" : "Trainee",
+        "city" : "Bhavnagar"
+}
+>
+> db.Employee.find().forEach(function(prof) {print(prof.name + ' is a ' + prof.profile) }) 
+Khushi is a Trainee
+Pooja is a HR
+Drashti is a Software Engineer
+Gita is a Business Analyst
+>
+> db.Employee.findOne({city: 'Bhavnagar'})
+{
+        "_id" : ObjectId("61e6be79f02a1a00250b3825"),
+        "eid" : "A1",
+        "name" : "Khushi",
+        "profile" : "Trainee",
+        "city" : "Bhavnagar"
+}
+>
+> db.Employee.update({name: 'Drashti'},
+... {
+... name: 'Drashti',
+... city: 'Surat',
+... profile: 'Software Engineer',
+... eid: 'D2'
+... },
+... { upsert: true }
+... )
+WriteResult({
+        "nMatched" : 0,
+        "nUpserted" : 1,
+        "nModified" : 0,
+        "_id" : ObjectId("61e7e5a361cb7cff1b01dad3")
+})
+> db.Employee.find({name: 'Drashti'}).pretty()
+{
+        "_id" : ObjectId("61e7e5a361cb7cff1b01dad3"),
+        "name" : "Drashti",
+        "city" : "Surat",
+        "profile" : "Software Engineer",
+        "eid" : "D2"
+}
+>
+> db.Employee.update({name: 'Drashti'},
+... {
+...   $set: {
+...     profile: 'PHP Developer'
+...   }
+... })
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.Employee.find({name: 'Drashti'}).pretty()
+{
+        "_id" : ObjectId("61e7e5a361cb7cff1b01dad3"),
+        "name" : "Drashti",
+        "city" : "Surat",
+        "profile" : "PHP Developer",
+        "eid" : "D2"
+}
+>
+> db.Employee.update({name: 'Khushi'},{ $rename: { profile: 'designation' } })
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
+> db.Employee.find({name: 'Khushi'}).pretty()
+{
+        "_id" : ObjectId("61e6be79f02a1a00250b3825"),
+        "eid" : "A1",
+        "name" : "Khushi",
+        "city" : "Bhavnagar",
+        "designation" : "Trainee"
+}
+>
+> db.Employee.remove({name: 'Khushi'})
+WriteResult({ "nRemoved" : 1 })
+> db.Employee.find().pretty()
+{
+        "_id" : ObjectId("61e6bf5af02a1a00250b3826"),
+        "eid" : "B2",
+        "name" : "Pooja",
+        "profile" : "HR",
+        "city" : "Ahmedabad"
+}
+{ "_id" : ObjectId("61e6bf5af02a1a00250b3827"), "city" : "Surat" }
+{
+        "_id" : ObjectId("61e6bf5af02a1a00250b3828"),
+        "eid" : "D4",
+        "name" : "Gita",
+        "profile" : "Business Analyst",
+        "city" : "Vadodara"
+}
+{
+        "_id" : ObjectId("61e7e5a361cb7cff1b01dad3"),
+        "name" : "Drashti",
+        "city" : "Surat",
+        "profile" : "PHP Developer",
+        "eid" : "D2"
+}
+>
+> db.Employee.createIndex({ name: 'text' })
+{
+        "numIndexesBefore" : 1,
+        "numIndexesAfter" : 2,
+        "createdCollectionAutomatically" : false,
+        "ok" : 1
+}
+> db.Employee.find({ $text: { $search: "\"Pooja\"" } }).pretty()
+{
+        "_id" : ObjectId("61e6bf5af02a1a00250b3826"),
+        "eid" : "B2",
+        "name" : "Pooja",
+        "profile" : "HR",
+        "city" : "Ahmedabad"
+}
+>
