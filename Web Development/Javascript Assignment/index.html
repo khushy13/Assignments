@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Assignment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+    <script type="text/javascript">
+     
+        function display() {
+            var img = document.getElementById("prodImage");
+            var pname = document.getElementById("name").value;
+            var description = document.getElementById("description").value;
+            var quantity = document.getElementById("quantity").value;
+            var price = document.getElementById("price").value;
+            var submit = document.querySelector("button");
+            var products = document.getElementById("products");
+
+            var tr = document.createElement('tr');
+            var td0 = tr.appendChild(document.createElement('td'));
+            var td1 = tr.appendChild(document.createElement('td'));
+            var td2 = tr.appendChild(document.createElement('td'));
+            var td3 = tr.appendChild(document.createElement('td'));
+            var td4 = tr.appendChild(document.createElement('td'));
+            var td5 = tr.appendChild(document.createElement('td'));
+
+            var files = img.files[0]; 
+            if(files) {
+                const fileReader = new FileReader();
+                fileReader.readAsDataURL(files);
+                fileReader.addEventListener("load", function () {
+                    td0.style.display = "block";
+                    td0.innerHTML = '<img src="' + this.result + '" width="180px" height="150px"/>';
+                }); 
+            }
+                     
+            td1.innerHTML = pname;
+            td2.innerHTML = description;
+            td3.innerHTML = quantity;
+            td4.innerHTML = price;
+            td5.innerHTML = "<input type='checkbox' name='cart1' class='form-check-input' onclick='cartItems()' />";
+
+            document.getElementById("products").appendChild(tr);
+
+            reset();
+        }
+
+        function reset() {
+            document.getElementById('prodImage').value = "";
+            document.getElementById('name').value = "";
+            document.getElementById('description').value = "";
+            document.getElementById('quantity').value = "";
+            document.getElementById('price').value = "";
+        }
+
+        function cartItems(td) {
+           var table = document.getElementById('products');
+           checkbox = document.getElementsByName('cart1');
+           for(var i = 0; i < checkbox.length; i++) {
+               if(checkbox[i].checked) {
+                   var tr = document.createElement('tr');
+
+                   var td1 = tr.appendChild(document.createElement('td'));
+                   var td2 = tr.appendChild(document.createElement('td'));
+
+                   td1.innerHTML = table.rows[i+1].cells[1].innerHTML;
+                   td2.innerHTML = table.rows[i+1].cells[3].innerHTML;
+
+                   document.getElementById('cartProducts').appendChild(tr);
+               } 
+           } 
+        } 
+    </script>
+
+    <div class="container mt-5">
+        <div class="row"> 
+            <div class="col-4 me-5">
+                <div class="card p-5 bg-light" style="box-shadow: 10px 10px 10px lightgrey;">
+                <h5 class="mb-4">Add Products</h5>
+                <div class="mb-3">
+                    <label for="prodImage" class="form-label">Select Product Image</label>
+                    <input class="form-control" type="file" id="prodImage">
+                </div>
+                <input class="form-control mb-3" type="text" placeholder="Product Name" id="name">
+                <textarea class="form-control mb-3" id="description" rows="3" placeholder="Product Description"></textarea>
+                <input class="form-control mb-3" type="text" placeholder="Quantity Available" id="quantity">
+                <input class="form-control mb-3" type="text" placeholder="Product Price" id="price">
+                <button type="submit" class="btn btn-primary mb-3" onclick="display()">Add Item</button>
+            </div>
+            <div class="card bg-light p-5 mt-5" style="box-shadow: 10px 10px 10px lightgrey;">
+                <h5 class="mb-4">Cart Items</h5>
+                <div class="col-4">
+                    <table class="table text-center" id="cartProducts">
+                        <tr>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            </div>
+            
+            <div class="card bg-light p-5 col" style="box-shadow: 10px 10px 10px lightgrey;">
+                <h5 class="mb-4">Available Products</h5>
+                <table id="products" class="table text-center" style="">
+                   <tr>
+                       <th>Image</th>
+                       <th>Name</th>
+                       <th>Description</th>
+                       <th>Quantity</th>
+                       <th>Price</th>
+                       <th>Add to Cart</th>
+                   </tr>
+               </table>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

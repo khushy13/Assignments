@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body> 
+    <div class="container mt-4">
+        <h3 class="text-center">Quiz Time</h3>
+        <div class="card card-style mt-4" id="questions">
+            <h1 id="title" class="text-center mt-5">Let's Play The Quiz</h1>
+            <p class="text-muted text-center" id="subtitle">Be the first one!</p>
+            <button id="btn1" class="btn mt-5" style="margin: 0 auto;" >Start Quiz</button>
+            
+            <div class="question mt-5 mb-5 ms-5" id="1"> 
+                <span style="font-weight: bold;"> 
+                    <h2 class="mb-4"> Question 1: </h2> 
+                    <h5>1. Sun rises in the ____. <br> </h5>
+                </span>
+                <span class="mt-3">
+                    <input type="radio" name="radio1" value="West">  West <br>
+                    <input type="radio" name="radio1" value="East"> East <br>
+                    <input type="radio" name="radio1" value="North"> North <br>
+                    <input type="radio" name="radio1" value="South"> South
+                </span>
+            </div>
+            <div class="question mt-5 mb-5 ms-5" id="2">
+                <span style="font-weight: bold;"> 
+                    <h2 class="mb-4"> Question 2: </h2>
+                    <h5> 2. ____ is a herbivore. <br> </h5>
+                </span>
+                <span class="mt-3">
+                    <input type="radio" name="radio2" value="Lion"> Lion <br>
+                    <input type="radio" name="radio2" value="Tiger"> Tiger <br>
+                    <input type="radio" name="radio2" value="Cow"> Cow <br>
+                    <input type="radio" name="radio2" value="Leopard"> Leopard 
+                </span>
+            </div>
+            <div class="question mt-5 mb-5 ms-5" id="3">
+                <span style="font-weight: bold;"> 
+                    <h2 class="mb-4"> Question 3: </h2>
+                    <h5> 3. ____ is our national animal. <br> </h5>
+                </span>
+                <span class="mt-3">
+                    <input type="radio" name="radio3" value="Lion"> Lion <br>
+                    <input type="radio" name="radio3" value="Tiger"> Tiger <br>
+                    <input type="radio" name="radio3" value="Cow"> Cow <br>
+                    <input type="radio" name="radio3" value="Leopard"> Leopard 
+                </span>
+            </div>
+            <div class="question mt-5 mb-5 ms-5" id="4">
+                <span style="font-weight: bold;"> 
+                    <h2 class="mb-4"> Question 4: </h2>
+                    <h5> 4. ____ is our national sport. <br> </h5>
+                </span>
+                <span class="mt-3">
+                    <input type="radio" name="radio4" value="Cricket"> Cricket <br>
+                    <input type="radio" name="radio4" value="Hockey"> Hockey <br>
+                    <input type="radio" name="radio4" value="Basketball"> Basketball <br>
+                    <input type="radio" name="radio4" value="Football"> Football 
+                </span>
+            </div>
+            <div class="question mt-5 mb-5 ms-5" id="5">
+                <span style="font-weight: bold;"> 
+                    <h2 class="mb-4"> Question 5: </h2> 
+                    <h5> 5. ____ is our national flower. <br> </h5>
+                 </span>
+                <span class="mt-3">
+                    <input type="radio" name="radio5" value="Mogra"> Mogra <br>
+                    <input type="radio" name="radio5" value="Rose"> Rose <br>
+                    <input type="radio" name="radio5" value="Lotus"> Lotus <br>
+                    <input type="radio" name="radio5" value="Hibiscus"> Hibiscus 
+                </span>
+            </div>
+               
+            <div class="question mt-5 mb-5 ms-5" id="6">
+                <button id="result" class="btn mt-3 mb-5" style="width:50%; height:40%">Display Results</button>                
+            </div>
+
+            <input type="submit" id="next" class="btn mb-5 ms-5" value="Next Question"/>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
