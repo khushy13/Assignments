@@ -6,7 +6,7 @@
 }
 #btn1, #next, #result {
     background-color: purple;
-    width: 40%;
+    width: 42%;
     height: 12%;
     color: white;
     font-size: larger;   
@@ -19,23 +19,24 @@
     padding: 4%;
     padding-top: 2%;
     padding-bottom: 2%;
-    background-color: lightgrey;
+    background-color:rgb(201, 201, 230);
     border: none;
     border-radius: 20px;
-    box-shadow: 10px 10px 50px lightgrey;
+    box-shadow: 10px 10px 70px lightgrey; 
+    margin-top: 100px;
 } 
 #btn1:hover {
-    background-color: rebeccapurple;
+    background-color: rgba(27, 55, 216, 0.856);
 }
 #next:hover {
-    background-color: rebeccapurple;
+    background-color: rgba(27, 55, 216, 0.856);
 }
 #result:hover {
-    background-color: rebeccapurple;
+    background-color: rgba(27, 55, 216, 0.856);
 }
 h1, h2, h5 { 
     font-weight: bold;
-    background: linear-gradient(to right, purple, rebeccapurple);
+    background: linear-gradient(to right, purple, rgba(27, 55, 216, 0.856));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
