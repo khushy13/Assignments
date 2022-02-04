@@ -1,0 +1,10 @@
+{
+    "id" : 1,
+    "name" : "test user",
+    "password" : "test123",
+    "gender" : "male",
+    "birthdate" : "24/04/1996",
+    "age" : 24,
+    "country" : "india",
+    "phone" : "+911112223334"
+}
